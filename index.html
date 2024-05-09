@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    :root{
+      --font-normal: "DM Sans", sans-serif;
+      --font-fancy: Palatino Linotype;
+
+      --project-gray: gray;
+      --project-white: white;
+    }
+
+
+    nav{
+      position: absolute;
+
+      margin-top: 6vh;
+
+      width: 100%;
+      height: 6vh;
+
+      display: flex;
+      row-gap: 3vh;
+      flex-direction: row;
+      font-family: var(--font-normal);
+
+    }
+
+
+    nav a{
+      text-decoration: none;
+    }
+
+    .left-text{
+
+      flex-grow: 3;
+      padding-left: 4rem;
+      display: flex;
+      align-items: center;
+
+      font-weight: 400;
+      font-size: 25px;
+    }
+
+    .logo-img{
+      width: 1em;
+      aspect-ratio: 1 /1;
+      margin-right: 0.5rem;
+    }
+
+    .right-text{
+      flex-grow: 1;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+
+      padding-right: 3.5rem;
+      column-gap: 2.5rem;
+
+    }
+
+
+    @media (width < 768px) {
+
+      nav{
+        flex-direction: column;
+      }
+
+      .left-text{
+        justify-content: center;
+        padding-inline: 0;
+
+      }
+
+      .right-text{
+        justify-content: center;
+        padding-inline: 0;
+      }
+    }
+
+    @media (width < 376px) {
+      .left-text{
+        font-size: 22px;
+      }
+
+      .right-text{
+        font-size: 3.8vw;
+      }
+    }
+    
+    main{
+      background-color: white;
+      height: 100vh;
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .glitched-effect-wrapper{
+      position: fixed;
+
+      /* background-color: blue; */
+    }
+
+    .glitched-effect-wrapper > h1{
+      font-size: 5vw;
+      font-family: var(--font-fancy);
+      /* font-style: italic;    */
+
+      margin-left: 1ch;
+      
+      display: flex;
+      justify-content: center;
+    }
+
+    .glitched-effect-wrapper > h1 > span {
+      width: 14.5ch;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .project-background-image{
+      height: 100vh;
+      width: 100%;
+      
+      background-image: var(--project-background-image);
+      background-size: cover;
+      background-attachment: fixed;
+
+      position: relative;
+
+
+      display: flex;
+      align-items: center;
+      justify-content: start;
+    }
+
+    .project-background-image.right{
+      justify-content: end;
+    }
+
+    .text-container{
+      height: 100%;
+      width: 50%;
+
+      padding: 10%;
+
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      row-gap: 1.5rem;
+
+      background-color: rgba(0, 0, 0, 0.75);
+      
+      font-family: var(--font-fancy);
+      color: white;
+    }
+
+    .text-container *{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .text-container .project-number{
+      font-size: 70px;
+      color: var(--project-gray);
+      font-weight: 200;
+      margin-bottom: -0.5rem;
+    }
+
+    .text-container .project-name{
+      font-size: 40px;
+    }
+
+    .text-container .project-description{
+      font-size: 18px;
+      color: var(--project-gray);
+      font-family: var(--font-normal);
+    }
+
+    .text-container .project-link{
+      color: var(--project-white);
+      font-family: var(--font-normal);  
+      text-decoration: underline;
+    }
+
+    @media (width < 768px) {
+      .text-container{
+        width: 100%;
+
+        justify-content: center;
+
+        background-color: rgba(0, 0, 0, 0.5);
+        --project-gray: rgb(181, 181, 181);
+      }
+    }
+
+
+    footer{
+      font-size: 25px;
+      font-family: var(--font-normal);
+
+      padding-block: 1rem;
+      padding-inline: 0.5rem;
+
+      display: flex;
+      flex-direction: row;
+    } 
+
+    @media (width < 768px) {
+      footer{
+        flex-direction: column;
+        row-gap: 1rem;
+      }
+    }
+    
+    .section-wrapper{
+      flex-grow: 1;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .section-wrapper .links{
+      display: flex;
+      column-gap: 1.3rem;
+
+      font-size: 1rem;
+    }
+
+    @media (width < 376px) {
+      .section-wrapper .section-name{
+        font-size: 22px;
+      }
+
+      .section-wrapper .links{
+        font-size: 3.8vw;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="left-text">
+      <a href="">
+        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
+        Lee Ying Ray
+      </a>
+    </div>
+
+    <div class="right-text">
+      <a href="">Home</a>
+      <a href="">Projects</a>
+      <a href="">About me</a>
+      <a href="">Resume</a>
+    </div>
+  </nav>
+  <main>
+    <div class="glitched-effect-wrapper">
+      <h1>Meet Your New&nbsp;<span class="glitched-text">Web Developer</span></h1>
+    </div>
+  </main>
+  
+  <div class="project-background-image" style="--project-background-image: url(https://images.unsplash.com/photo-1714756034183-42581eacfb05?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+    <div class="text-container">
+      <h2 class="project-number">01</h2>
+      <h2 class="project-name">Project 1</h2>
+      <p class="project-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, blanditiis?</p>
+      <a href="" class="project-link">View Project</a>
+    </div>
+  </div>
+
+  <div class="project-background-image right" style="--project-background-image: url(https://plus.unsplash.com/premium_photo-1661851293346-dfd1f54773bc?q=80&w=1896&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+    <div class="text-container">
+      <h2 class="project-number">02</h2>
+      <h2 class="project-name">Project 2</h2>
+      <p class="project-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta, cumque.</p>
+      <a href="" class="project-link">View Project</a>
+    </div>
+  </div>
+
+  <div class="project-background-image" style="--project-background-image: url(https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+    <div class="text-container">
+      <h2 class="project-number">03</h2>
+      <h2 class="project-name">Project 3</h2>
+      <p class="project-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, hic?</p>
+      <a href="" class="project-link">View Project</a>
+    </div>
+  </div>
+
+  <div class="project-background-image right" style="--project-background-image: url(https://images.unsplash.com/photo-1714505026042-eee1eaa0b17f?q=80&w=1806&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+    <div class="text-container">
+      <h2 class="project-number">04</h2>
+      <h2 class="project-name">Project 4</h2>
+      <p class="project-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, vel.</p>
+      <a href="" class="project-link">View Project</a>
+    </div>
+  </div>
+
+  <footer>
+
+    <section class="section-wrapper">
+      <div class="section-name">
+        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
+          Lee Ying Ray
+      </div>
+
+      <div class="links">
+        <a href="">Home</a>
+        <a href="">Projects</a>
+        <a href="">About me</a>
+        <a href="">Resume</a>
+      </div>
+    </section>
+
+    <section class="section-wrapper">
+      <div class="section-name">
+        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
+        Contact Me
+      </div>
+
+      <div class="links">
+        <a href="">Email</a>
+        <a href="">LinkedIn</a>
+        <a href="">GitHub</a>
+      </div>
+    </section>
+
+  </footer>
+  
+  <script>
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let interval = null;
+    let isGlitched = false;
+    const words = [
+      { normal: "Web Developer", glitched: "Data Scientist" },
+    ];
+    let currentWordIndex = 0;
+
+    function startGlitchAnimation() {
+      const word = words[currentWordIndex];
+      const normalText = word.normal;
+      const glitchedText = word.glitched;
+      const maxLength = Math.max(normalText.length, glitchedText.length);
+      const difference = Math.abs(glitchedText.length - normalText.length);
+
+      let iteration = 0;
+
+      interval = setInterval(() => {
+        document.querySelector(".glitched-text").innerHTML = Array.from({ length: maxLength }, (_, index) => {
+          if (index < iteration && index < glitchedText.length) {
+            return isGlitched ? glitchedText[index] : normalText[index];
+          }
+          if (index === maxLength - difference || index === maxLength) {
+            return '&nbsp;';
+          }
+          return letters[Math.floor(Math.random() * 26)];
+        }).join("");
+
+        if (iteration >= maxLength) {
+          clearInterval(interval);
+          isGlitched = !isGlitched;
+          setTimeout(() => {
+            currentWordIndex = (currentWordIndex + 1) % words.length;
+            startGlitchAnimation();
+          }, 5000); 
+        }
+
+        iteration += 1 / 2.5;
+      }, 30);
+    }
+
+    startGlitchAnimation()
+  </script>
+
+</body>
+</html>
