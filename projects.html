@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects</title>
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+    /* Setup */
+
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    :root{
+      --font-normal: "DM Sans", sans-serif;
+      --font-fancy: Palatino Linotype;
+
+      --project-gray: gray;
+      --project-white: white;
+
+      --display-blue: #2f1664;
+      --display-hover-blue: #6942bb;
+      --display-font-color: #FFFFFF;
+    }
+
+    /* Header */
+
+    nav{
+      margin-top: 6vh;
+
+      width: 100%;
+      height: 6vh;
+
+      display: flex;
+      row-gap: 3vh;
+      flex-direction: row;
+
+      font-family: var(--font-normal);
+
+    }
+
+    nav a{
+      text-decoration: none;
+    }
+
+    .left-text{
+
+      flex-grow: 3;
+      padding-left: 4rem;
+      display: flex;
+      align-items: center;
+
+      font-weight: 400;
+      font-size: 25px;
+    }
+
+    .logo-img{
+      width: 1em;
+      aspect-ratio: 1 /1;
+      margin-right: 0.5rem;
+    }
+
+    .right-text{
+      flex-grow: 1;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+
+      padding-right: 3.5rem;
+      column-gap: 2.5rem;
+
+    }
+
+
+    @media (width < 768px) {
+
+      nav{
+        flex-direction: column;
+      }
+
+      .left-text{
+        justify-content: center;
+        padding-inline: 0;
+
+      }
+
+      .right-text{
+        justify-content: center;
+        padding-inline: 0;
+      }
+    }
+
+    @media (width < 426px) {
+      .left-text{
+        font-size: 4.7vw;
+      }
+
+      .right-text{
+        font-size: 3.5vw;
+      }
+    }
+
+    /* Landing Page */
+
+    .main-header{
+      font-family: var(--font-normal);
+      font-size: 65px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin-top: 10vh;
+    }
+
+    .project-display{
+      padding: 2rem;
+
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      column-gap: 1.5rem;
+      row-gap: 2.5rem;
+    }
+
+    .project{
+      --background-color: var(--display-blue);
+
+      border: 3px var(--display-blue) solid;
+
+      border-radius: 20px;
+      overflow: hidden;
+      
+      position: relative;
+
+      transition: opacity 0.6s;
+    }
+
+    .project::after{
+      position: absolute;
+      left: 0;
+      top: 10%;
+      content: '';
+
+      width: 100%;
+      height: 75%;
+
+      opacity: 0;
+
+      background-color: rgba(0, 0, 0, 0.25);
+      /* background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="143" height="92" viewBox="0 0 143 92" fill="none"><path d="M132.786 46.1002C124.699 33.5627 114.565 24.1861 102.382 17.9705C105.627 23.4955 107.25 29.4721 107.25 35.9002C107.25 45.7283 103.752 54.1354 96.7564 61.1213C89.7607 68.1072 81.3419 71.6002 71.5 71.6002C61.6581 71.6002 53.2393 68.1072 46.2436 61.1213C39.2479 54.1354 35.75 45.7283 35.75 35.9002C35.75 29.4721 37.3726 23.4955 40.6177 17.9705C28.4351 24.1861 18.3006 33.5627 10.2143 46.1002C17.2898 56.9908 26.1608 65.6635 36.8273 72.1182C47.4938 78.5729 59.0513 81.8002 71.5 81.8002C83.9487 81.8002 95.5062 78.5729 106.173 72.1182C116.839 65.6635 125.71 56.9908 132.786 46.1002ZM75.3304 15.5002C75.3304 14.4377 74.958 13.5346 74.2132 12.7908C73.4684 12.0471 72.564 11.6752 71.5 11.6752C64.8501 11.6752 59.1444 14.0525 54.3831 18.8072C49.6217 23.5619 47.2411 29.2596 47.2411 35.9002C47.2411 36.9627 47.6135 37.8658 48.3583 38.6096C49.1031 39.3533 50.0074 39.7252 51.0714 39.7252C52.1354 39.7252 53.0398 39.3533 53.7846 38.6096C54.5294 37.8658 54.9018 36.9627 54.9018 35.9002C54.9018 31.3314 56.5244 27.4268 59.7695 24.1861C63.0147 20.9455 66.9249 19.3252 71.5 19.3252C72.564 19.3252 73.4684 18.9533 74.2132 18.2096C74.958 17.4658 75.3304 16.5627 75.3304 15.5002ZM143 46.1002C143 47.9064 142.468 49.7393 141.404 51.5986C133.956 63.8174 123.941 73.6057 111.36 80.9635C98.778 88.3213 85.4914 92.0002 71.5 92.0002C57.5086 92.0002 44.222 88.308 31.6403 80.9236C19.0587 73.5393 9.0439 63.7643 1.59598 51.5986C0.531994 49.7393 0 47.9064 0 46.1002C0 44.2939 0.531994 42.4611 1.59598 40.6018C9.0439 28.4361 19.0587 18.6611 31.6403 11.2768C44.222 3.89238 57.5086 0.200195 71.5 0.200195C85.4914 0.200195 98.778 3.89238 111.36 11.2768C123.941 18.6611 133.956 28.4361 141.404 40.6018C142.468 42.4611 143 44.2939 143 46.1002Z" fill="%236942bb"/></svg>'); */
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="143" height="92" viewBox="0 0 143 92" fill="none"><path d="M132.786 46.1002C124.699 33.5627 114.565 24.1861 102.382 17.9705C105.627 23.4955 107.25 29.4721 107.25 35.9002C107.25 45.7283 103.752 54.1354 96.7564 61.1213C89.7607 68.1072 81.3419 71.6002 71.5 71.6002C61.6581 71.6002 53.2393 68.1072 46.2436 61.1213C39.2479 54.1354 35.75 45.7283 35.75 35.9002C35.75 29.4721 37.3726 23.4955 40.6177 17.9705C28.4351 24.1861 18.3006 33.5627 10.2143 46.1002C17.2898 56.9908 26.1608 65.6635 36.8273 72.1182C47.4938 78.5729 59.0513 81.8002 71.5 81.8002C83.9487 81.8002 95.5062 78.5729 106.173 72.1182C116.839 65.6635 125.71 56.9908 132.786 46.1002ZM75.3304 15.5002C75.3304 14.4377 74.958 13.5346 74.2132 12.7908C73.4684 12.0471 72.564 11.6752 71.5 11.6752C64.8501 11.6752 59.1444 14.0525 54.3831 18.8072C49.6217 23.5619 47.2411 29.2596 47.2411 35.9002C47.2411 36.9627 47.6135 37.8658 48.3583 38.6096C49.1031 39.3533 50.0074 39.7252 51.0714 39.7252C52.1354 39.7252 53.0398 39.3533 53.7846 38.6096C54.5294 37.8658 54.9018 36.9627 54.9018 35.9002C54.9018 31.3314 56.5244 27.4268 59.7695 24.1861C63.0147 20.9455 66.9249 19.3252 71.5 19.3252C72.564 19.3252 73.4684 18.9533 74.2132 18.2096C74.958 17.4658 75.3304 16.5627 75.3304 15.5002ZM143 46.1002C143 47.9064 142.468 49.7393 141.404 51.5986C133.956 63.8174 123.941 73.6057 111.36 80.9635C98.778 88.3213 85.4914 92.0002 71.5 92.0002C57.5086 92.0002 44.222 88.308 31.6403 80.9236C19.0587 73.5393 9.0439 63.7643 1.59598 51.5986C0.531994 49.7393 0 47.9064 0 46.1002C0 44.2939 0.531994 42.4611 1.59598 40.6018C9.0439 28.4361 19.0587 18.6611 31.6403 11.2768C44.222 3.89238 57.5086 0.200195 71.5 0.200195C85.4914 0.200195 98.778 3.89238 111.36 11.2768C123.941 18.6611 133.956 28.4361 141.404 40.6018C142.468 42.4611 143 44.2939 143 46.1002Z" fill="%232F1664"/></svg>');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 6rem;
+      
+      transition: all 0.3s;
+    }
+
+    .project-display-header{
+      width: 100%;
+      height: 10%;
+
+      background-color: var(--background-color);
+
+      display: flex;
+      justify-content: start;
+      align-items: center;
+
+      column-gap: 7px;
+      padding-left: 0.75rem;
+
+      transition: all 0.3s;
+    }
+
+    .project-display-header > .circle{
+      width: 10px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+
+      background-color: var(--circle-background-color);
+    }
+
+    .project img{
+      object-fit: cover;
+      width: 100%;
+      height: 75%;
+    }
+
+    .project-display-description{
+      position: absolute;
+      bottom: 0;
+
+      width: 100%;
+      height: 15%;
+      background-color: var(--background-color);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-family: var(--font-normal);
+      color: var(--display-font-color);
+      font-size: 20px;
+
+      transition: all 0.3s;
+    }
+
+    .project:hover{
+      --background-color: var(--display-hover-blue);
+    }
+
+    .project:hover::after{
+      opacity: 1;
+    }
+
+    body:has(.project:hover) .project:not(:hover){
+      opacity: 0.8;
+    }
+
+    @media (width < 768px) {
+      .main-header{
+        font-size: 10vw;
+      }
+
+      .project-display{
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+
+      .project-display-description{
+        font-size: 4vw;
+      }
+
+    }
+
+    /* Footer */
+
+    footer{
+      font-size: 25px;
+      font-family: var(--font-normal);
+
+      padding-block: 1rem;
+      padding-inline: 0.5rem;
+
+      display: flex;
+      flex-direction: row;
+
+      position: relative;
+      z-index: 2;
+
+      background-color: #f1f5f9;
+    } 
+
+    @media (width < 768px) {
+      footer{
+        flex-direction: column;
+        row-gap: 1rem;
+      }
+    }
+    
+    .section-wrapper{
+      flex-grow: 1;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .section-wrapper .links{
+      display: flex;
+      column-gap: 1.3rem;
+
+      font-size: 1rem;
+    }
+
+    @media (width < 376px) {
+      .section-wrapper .section-name{
+        font-size: 22px;
+      }
+
+      .section-wrapper .links{
+        font-size: 3.8vw;
+      }
+    }
+
+    .animejs-falling-target{
+      transform-origin: left;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="left-text">
+      <a href="">
+        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
+        Lee Ying Ray
+      </a>
+    </div>
+
+    <div class="right-text">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="">About me</a>
+      <a href="">Resume</a>
+    </div>
+  </nav>
+
+  <main>
+    <h1 class="main-header"><span class="animejs-falling-target">Projects</span>&nbsp;&nbsp;<span class="animejs-rotateY-target">Page</span></h1>
+
+    <div class="project-display">
+      <a  href="" class="project">
+        <div class="project-display-header">
+          <div class="circle" style="--circle-background-color: #ff8096;"></div>
+          <div class="circle" style="--circle-background-color: #ff9c7e;"></div>
+          <div class="circle" style="--circle-background-color: #ffba7f;"></div>
+          <div class="circle" style="--circle-background-color: #42d5b6;"></div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1714756034183-42581eacfb05?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        <div class="project-display-description">Lorem ipsum Project 1</div>
+      </a>
+
+      <a  href="" class="project">
+        <div class="project-display-header">
+          <div class="circle" style="--circle-background-color: #ff8096;"></div>
+          <div class="circle" style="--circle-background-color: #ff9c7e;"></div>
+          <div class="circle" style="--circle-background-color: #ffba7f;"></div>
+          <div class="circle" style="--circle-background-color: #42d5b6;"></div>
+        </div>
+        <img src="https://plus.unsplash.com/premium_photo-1661851293346-dfd1f54773bc?q=80&w=1896&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        <div class="project-display-description">Lorem ipsum Project 2</div>
+      </a>
+
+      <a  href="" class="project">
+        <div class="project-display-header">
+          <div class="circle" style="--circle-background-color: #ff8096;"></div>
+          <div class="circle" style="--circle-background-color: #ff9c7e;"></div>
+          <div class="circle" style="--circle-background-color: #ffba7f;"></div>
+          <div class="circle" style="--circle-background-color: #42d5b6;"></div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        <div class="project-display-description">Lorem ipsum Project 3</div>
+      </a>
+
+      <a  href="" class="project">
+        <div class="project-display-header">
+          <div class="circle" style="--circle-background-color: #ff8096;"></div>
+          <div class="circle" style="--circle-background-color: #ff9c7e;"></div>
+          <div class="circle" style="--circle-background-color: #ffba7f;"></div>
+          <div class="circle" style="--circle-background-color: #42d5b6;"></div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1714505026042-eee1eaa0b17f?q=80&w=1806&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        <div class="project-display-description">Lorem ipsum Project 4</div>
+      </a>
+      
+    </div>
+  </main>
+
+  <footer>
+
+    <section class="section-wrapper">
+      <div class="section-name">
+        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
+          Lee Ying Ray
+      </div>
+
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="">About me</a>
+        <a href="">Resume</a>
+      </div>
+    </section>
+
+    <section class="section-wrapper">
+      <div class="section-name">
+        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
+        Contact Me
+      </div>
+
+      <div class="links">
+        <a href="">Email</a>
+        <a href="">LinkedIn</a>
+        <a href="">GitHub</a>
+      </div>
+    </section>
+
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    anime({
+      targets: '.animejs-rotateY-target',
+      rotateY: [0, -720],
+      delay: 500,
+      duration: 3000,
+      easing: "easeOutExpo"
+    })
+
+    anime({
+      targets: '.animejs-falling-target',
+      keyframes: [
+        {rotateZ: [-85, -85], translateX: [500, -50], duration: 500, easing: "linear"},
+        {duration: 200},
+        {rotateZ: [-85, 0], translateX: [-50, 0],duration: 2500, easing: "cubicBezier(0.950, 0.050, 0.885, 0.015)"},
+      ],
+      delay: 500,
+    })
+  </script>
+
+</body>
+</html>
