@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Portfolio</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+    /* Setup */
 
     *{
       padding: 0;
@@ -21,6 +23,7 @@
       --project-white: white;
     }
 
+    /* Header */
 
     nav{
       position: absolute;
@@ -33,10 +36,9 @@
       display: flex;
       row-gap: 3vh;
       flex-direction: row;
+
       font-family: var(--font-normal);
-
     }
-
 
     nav a{
       text-decoration: none;
@@ -89,15 +91,17 @@
       }
     }
 
-    @media (width < 376px) {
+    @media (width < 426px) {
       .left-text{
-        font-size: 22px;
+        font-size: 4.7vw;
       }
 
       .right-text{
-        font-size: 3.8vw;
+        font-size: 3.5vw;
       }
     }
+    
+    /* Landing Page */
     
     main{
       background-color: white;
@@ -105,32 +109,92 @@
       width: 100%;
 
       display: flex;
-      justify-content: center;
+      justify-content: start;
       align-items: center;
     }
 
     .glitched-effect-wrapper{
       position: fixed;
 
+      font-size: 90px;
+      font-family: var(--font-fancy);
+
+      margin-left: 4vw;
+
       /* background-color: blue; */
     }
 
     .glitched-effect-wrapper > h1{
-      font-size: 5vw;
-      font-family: var(--font-fancy);
-      /* font-style: italic;    */
-
-      margin-left: 1ch;
+      font-size: 90px;
+      font-weight: 400;
       
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      
+      transform-origin: bottom;
+
     }
 
     .glitched-effect-wrapper > h1 > span {
+      font-size: 105px;
       width: 14.5ch;
       white-space: nowrap;
       overflow: hidden;
+      font-weight: 900;
+
+      margin-top: -0.3em;
+
+      transform-origin: top;
     }
+
+    .glitched-effect-wrapper > p {
+      font-family: var(--font-normal);
+      font-size: 25px;
+
+      width: 30vw;
+
+      margin-top: 1rem;
+    }
+
+    @media (width < 1024px) {
+      .glitched-effect-wrapper > h1{
+        font-size: 8.7vw;
+      }
+
+      .glitched-effect-wrapper > h1 > span{
+        font-size: 10.3vw;
+      }
+
+      .glitched-effect-wrapper > p{
+        font-size: 2.7vw;
+      }
+    }
+
+    @media (width < 768px) {
+      main{
+        justify-content: center;
+      }
+
+      .glitched-effect-wrapper{
+        margin: 0;
+      }
+
+      .glitched-effect-wrapper > h1{
+        font-size: 10vw;
+      }
+
+      .glitched-effect-wrapper > h1 > span{
+        font-size: 12vw;
+      }
+
+      .glitched-effect-wrapper > p{
+        font-size: 4.7vw;
+        width: 80vw;
+      }
+    }
+
+    /* Project Displays */
 
     .project-background-image{
       height: 100vh;
@@ -148,7 +212,7 @@
       justify-content: start;
     }
 
-    .project-background-image.right{
+    .project-background-image:nth-of-type(even){
       justify-content: end;
     }
 
@@ -211,6 +275,7 @@
       }
     }
 
+    /* Footer */
 
     footer{
       font-size: 25px;
@@ -221,6 +286,11 @@
 
       display: flex;
       flex-direction: row;
+
+      position: relative;
+      z-index: 2;
+
+      background-color: #f1f5f9;
     } 
 
     @media (width < 768px) {
@@ -268,15 +338,16 @@
     </div>
 
     <div class="right-text">
-      <a href="">Home</a>
-      <a href="">Projects</a>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
       <a href="">About me</a>
       <a href="">Resume</a>
     </div>
   </nav>
   <main>
     <div class="glitched-effect-wrapper">
-      <h1>Meet Your New&nbsp;<span class="glitched-text">Web Developer</span></h1>
+      <h1  class="animejs-scaleX-target">Meet Your New&nbsp;<span class="glitched-text">Web Developer</span></h1>
+      <p class="animejs-scaleX-target">👋My name is Ying Ray, and it is a pleasure to see you here. Check out my work below.</p>
     </div>
   </main>
   
@@ -325,8 +396,8 @@
       </div>
 
       <div class="links">
-        <a href="">Home</a>
-        <a href="">Projects</a>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
         <a href="">About me</a>
         <a href="">Resume</a>
       </div>
@@ -346,7 +417,9 @@
     </section>
 
   </footer>
-  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <script>
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let interval = null;
@@ -382,14 +455,21 @@
           setTimeout(() => {
             currentWordIndex = (currentWordIndex + 1) % words.length;
             startGlitchAnimation();
-          }, 5000); 
+          }, 4000); 
         }
 
         iteration += 1 / 2.5;
       }, 30);
     }
 
-    startGlitchAnimation()
+    setTimeout(startGlitchAnimation, 2000)
+
+    anime({
+      targets: '.animejs-scaleX-target',
+      scaleY: [0, 1],
+      delay: 500,
+      duration: 2000
+    })
   </script>
 
 </body>
