@@ -346,7 +346,7 @@
   </nav>
   <main>
     <div class="glitched-effect-wrapper">
-      <h1  class="animejs-scaleX-target">Meet Your New&nbsp;<span class="glitched-text">Web Developer</span></h1>
+      <h1  class="animejs-scaleX-target">Meet Your New<span class="glitched-text">Web Developer</span></h1>
       <p class="animejs-scaleX-target">👋My name is Ying Ray, and it is a pleasure to see you here. Check out my work below.</p>
     </div>
   </main>
@@ -425,11 +425,11 @@
     let interval = null;
     let isGlitched = false;
     const words = [
-      { normal: "Web Developer", glitched: "Data Scientist" },
+      { normal: "Web Developer", glitched: "Data Engineer" },
     ];
     let currentWordIndex = 0;
 
-    function startGlitchAnimation() {
+    function glitchAnimation() {
       const word = words[currentWordIndex];
       const normalText = word.normal;
       const glitchedText = word.glitched;
@@ -454,15 +454,15 @@
           isGlitched = !isGlitched;
           setTimeout(() => {
             currentWordIndex = (currentWordIndex + 1) % words.length;
-            startGlitchAnimation();
-          }, 4000); 
+            glitchAnimation();
+          }, 2500); 
         }
 
         iteration += 1 / 2.5;
       }, 30);
     }
 
-    setTimeout(startGlitchAnimation, 2000)
+    setTimeout(glitchAnimation, 2000)
 
     anime({
       targets: '.animejs-scaleX-target',
