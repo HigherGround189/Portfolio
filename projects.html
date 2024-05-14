@@ -400,19 +400,16 @@
     anime({
       targets: '.animejs-rotateY-target',
       rotateY: [0, -720],
-      delay: 500,
+      delay: 2500,
       duration: 3000,
-      easing: "easeOutExpo"
     })
 
     anime({
       targets: '.animejs-falling-target',
       keyframes: [
         {rotateZ: [-85, -85], translateX: [500, -50], duration: 500, easing: "linear"},
-        {duration: 200},
-        {rotateZ: [-85, 0], translateX: [-50, 0],duration: 2500, easing: "cubicBezier(0.950, 0.050, 0.885, 0.015)"},
-      ],
-      delay: 500,
+        {rotateZ: [-85, 0], translateX: [-50, 0],duration: 2000, easing: "cubicBezier(0.950, 0.050, 0.885, 0.015)"},
+      ]
     })
 
     function random() {
