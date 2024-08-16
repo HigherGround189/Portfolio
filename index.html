@@ -152,7 +152,7 @@
       font-family: var(--font-normal);
       font-size: 25px;
 
-      width: 30vw;
+      width: 41vw;
 
       margin-top: 1rem;
     }
@@ -182,6 +182,7 @@
 
       .glitched-effect-wrapper > h1{
         font-size: 10vw;
+        
       }
 
       .glitched-effect-wrapper > h1 > span{
@@ -326,6 +327,25 @@
       }
     }
 
+    .find-out-more{
+      height: 12vh;
+
+      font-family: var(--font-normal);
+      font-size: 1.5rem;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media (width < 426px) {
+      .find-out-more{
+        height: 7vh;
+        font-size: 3.7vw;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -340,51 +360,47 @@
     <div class="right-text">
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
-      <a href="">About me</a>
+      <a href="about_me.html">About me</a>
       <a href="">Resume</a>
     </div>
   </nav>
   <main>
     <div class="glitched-effect-wrapper">
       <h1  class="animejs-scaleX-target">Meet Your New<span class="glitched-text">Web Developer</span></h1>
-      <p class="animejs-scaleX-target">👋My name is Ying Ray, and it is a pleasure to see you here. Check out my work below.</p>
+      <p class="animejs-scaleX-target">👋My name is Ying Ray, and it is a pleasure to see you here. I am an aspiring Data Engineer and Front-end Web Developer. Check out my work below.</p>
     </div>
   </main>
   
-  <div class="project-background-image" style="--project-background-image: url(https://images.unsplash.com/photo-1714756034183-42581eacfb05?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+  <div class="project-background-image" style="--project-background-image: url(https://images.unsplash.com/photo-1589262804704-c5aa9e6def89?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
     <div class="text-container">
       <h2 class="project-number">01</h2>
-      <h2 class="project-name">Project 1</h2>
-      <p class="project-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, blanditiis?</p>
-      <a href="" class="project-link">View Project</a>
+      <h2 class="project-name">Shortest Path Between two Countries</h2>
+      <p class="project-description">What are the minimum number of borders to cross to get from Italy to Indonesia?</p>
+      <a href="project_shortest_path_between_countries.html" class="project-link">View Project</a>
     </div>
   </div>
 
-  <div class="project-background-image right" style="--project-background-image: url(https://plus.unsplash.com/premium_photo-1661851293346-dfd1f54773bc?q=80&w=1896&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+  <div class="project-background-image" style="--project-background-image: url(Images/Data_Engineering_Project_Arduino.jpg);">
     <div class="text-container">
       <h2 class="project-number">02</h2>
-      <h2 class="project-name">Project 2</h2>
-      <p class="project-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta, cumque.</p>
+      <h2 class="project-name">Data Engineering Project with Arduino</h2>
+      <p class="project-description">With an Arduino Uno and a few sensors, we can find the average temperature of a factory floor and its conduciveness for workers.</p>
       <a href="" class="project-link">View Project</a>
     </div>
   </div>
 
-  <div class="project-background-image" style="--project-background-image: url(https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+  <div class="project-background-image" style="--project-background-image: url(Images/ThreeJS-Runner.png);">
     <div class="text-container">
       <h2 class="project-number">03</h2>
-      <h2 class="project-name">Project 3</h2>
-      <p class="project-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, hic?</p>
+      <h2 class="project-name">Endless Runner game with Three.js</h2>
+      <p class="project-description">Control your green cube to avoid the red cubes!</p>
       <a href="" class="project-link">View Project</a>
     </div>
   </div>
 
-  <div class="project-background-image right" style="--project-background-image: url(https://images.unsplash.com/photo-1714505026042-eee1eaa0b17f?q=80&w=1806&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
-    <div class="text-container">
-      <h2 class="project-number">04</h2>
-      <h2 class="project-name">Project 4</h2>
-      <p class="project-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, vel.</p>
-      <a href="" class="project-link">View Project</a>
-    </div>
+  <div class="find-out-more">
+    <p>Want to know more about my skills and experiences?</p>
+    <p>Check out my <a href="">About Me</a> page.</p>
   </div>
 
   <footer>
@@ -398,21 +414,20 @@
       <div class="links">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
-        <a href="">About me</a>
+        <a href="about_me.html">About me</a>
         <a href="">Resume</a>
       </div>
     </section>
 
     <section class="section-wrapper">
       <div class="section-name">
-        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
         Contact Me
       </div>
 
       <div class="links">
-        <a href="">Email</a>
-        <a href="">LinkedIn</a>
-        <a href="">GitHub</a>
+        <a href="mailto: yingray88@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/y-r-lee-627b2b322/">LinkedIn</a>
+        <a href="https://github.com/HigherGround189">GitHub</a>
       </div>
     </section>
 
@@ -425,7 +440,7 @@
     let interval = null;
     let isGlitched = false;
     const words = [
-      { normal: "Web Developer", glitched: "Data Engineer" },
+      { normal: "Data Engineer", glitched: "Web Developer" },
     ];
     let currentWordIndex = 0;
 
@@ -462,7 +477,7 @@
       }, 30);
     }
 
-    setTimeout(glitchAnimation, 2000)
+    setTimeout(glitchAnimation, 2500)
 
     anime({
       targets: '.animejs-scaleX-target',
