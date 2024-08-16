@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css" rel="stylesheet" />
+  <title>Projects</title>
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+    /* Setup */
+
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    :root{
+      --font-normal: "DM Sans", sans-serif;
+      --font-fancy: Palatino Linotype;
+      --font-header: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+      --project-gray: gray;
+      --project-white: white;
+
+      --display-blue: #2f1664;
+      --display-hover-blue: #6942bb;
+      --display-font-color: #FFFFFF;
+    }
+
+    /* Header */
+
+    nav{
+      margin-top: 6vh;
+
+      width: 100%;
+      height: 6vh;
+
+      display: flex;
+      row-gap: 3vh;
+      flex-direction: row;
+
+      font-family: var(--font-normal);
+
+    }
+
+    nav a{
+      text-decoration: none;
+    }
+
+    .left-text{
+
+      flex-grow: 3;
+      padding-left: 4rem;
+      display: flex;
+      align-items: center;
+
+      font-weight: 400;
+      font-size: 25px;
+    }
+
+    .logo-img{
+      width: 1em;
+      aspect-ratio: 1 /1;
+      margin-right: 0.5rem;
+    }
+
+    .right-text{
+      flex-grow: 1;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+
+      padding-right: 3.5rem;
+      column-gap: 2.5rem;
+
+    }
+
+
+    @media (width < 768px) {
+
+      nav{
+        flex-direction: column;
+      }
+
+      .left-text{
+        justify-content: center;
+        padding-inline: 0;
+
+      }
+
+      .right-text{
+        justify-content: center;
+        padding-inline: 0;
+      }
+    }
+
+    @media (width < 426px) {
+      .left-text{
+        font-size: 4.7vw;
+      }
+
+      .right-text{
+        font-size: 3.5vw;
+      }
+    }
+
+    /* Footer */
+
+    footer{
+      font-size: 25px;
+      font-family: var(--font-normal);
+
+      padding-block: 1rem;
+      padding-inline: 0.5rem;
+
+      display: flex;
+      flex-direction: row;
+
+      position: relative;
+      z-index: 2;
+
+      background-color: #f1f5f9;
+    } 
+
+    @media (width < 768px) {
+      footer{
+        flex-direction: column;
+        row-gap: 1rem;
+      }
+    }
+    
+    .section-wrapper{
+      flex-grow: 1;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .section-wrapper .links{
+      display: flex;
+      column-gap: 1.3rem;
+
+      font-size: 1rem;
+    }
+
+    @media (width < 376px) {
+      .section-wrapper .section-name{
+        font-size: 22px;
+      }
+
+      .section-wrapper .links{
+        font-size: 3.8vw;
+      }
+    }
+
+    /* Content */
+
+    main{
+      min-height: 100vh;
+      width: 60vw;
+      margin-inline:auto;
+      margin-bottom: 2rem;
+      /* border: 3px red solid; */
+
+      display: flex;
+      align-items: center;
+      /* justify-content: center; */
+      flex-direction: column;
+      gap: 2vw;
+    }
+
+    .title-header{
+      font-size: 3vw;
+    }
+
+    /* main > *{
+      border: 3px orange solid;
+    }
+
+    main > * > * {
+      border: 3px orchid solid;
+    } */
+
+    h1{
+      font-family: var(--font-header);
+      font-size: 24px;
+    }
+
+    main img{
+      width: 100%;
+      border: 1px black solid;
+    }
+
+    .map-display{
+      filter: contrast(90%);
+    }
+
+    hr{
+      width: 100%;
+      height: 1px black solid;
+    }
+
+    main > section{
+      width: 80%;
+    }
+
+    section > p {
+      margin-top: 1rem;
+      font-size: 20px;
+      font-family: var(--font-normal);
+    }
+
+    pre{
+      background-color: lightgray;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+
+    pre > code{
+      margin-left: -3rem;
+    }
+
+    @media (width <= 768px) {
+      main{
+        width: 70vw;
+        margin-top: 6vh;
+      }
+    }
+
+    @media (width < 426px) {
+      main{
+        width: 100vw;
+        font-size: 12px;
+      }
+
+      .title-header{
+        font-size: 5vw;
+      }
+
+      h1{
+      font-size: 4.5vw;
+      }
+
+      section > p {
+      font-size: 16px;
+     }
+    }
+
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="left-text">
+      <a href="index.html">
+        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
+        Ying Ray
+      </a>
+    </div>
+
+    <div class="right-text">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="">About me</a>
+      <a href="">Resume</a>
+    </div>
+  </nav>
+
+  <main>
+    <h1 class="title-header">Shortest Path between two  Countries</h1>
+    <img src="Images/shortest_parth_between_countries.png" alt="" class="map-display">
+
+    <hr>
+    <section>
+      <h1>Project Background</h1>
+      <p>What are the <b>minimum</b> number of borders to cross to get from Italy to Indonesia?  This question plagued me one day, after I visited <a href="https://travle.earth/">travel.earth</a>: A game where you guess the shortest path between two countries, crossing the <b>least</b> borders in the process. <br><br>Here is an example:</p>
+      <img src="shortest_path_example.png" alt="" class="map-display">
+      <p>Minimum number of borders to go from China to Singapore : 4 Countries to cross:
+        <br>1) China -> Laos
+        <br>2) Laos -> Thailand
+        <br>3) Thailand -> Malaysia
+        <br>4) Malaysia -> Singapore</p>
+      <p>While playing, I wondered if it were possible to make a python script that could play this game flawlessly; This <a href="https://colab.research.google.com/drive/1ZR49Ne2K173WT_UjbxOcLCk1Stxu3Iv3?usp=sharing">project</a> is the result.</p>
+    </section>
+
+    <section>
+      <h1>1. Data</h1>
+      <p>I used Natural Earth’s <a href="https://github.com/datasets/geo-countries">data package</a>, which contains GeoJSON polygons, to provide shapes for all the world's countries. I was specifically looking for the political borders of each country. </p>
+    </section>
+
+    <section>
+      <h1>2. Libraries</h1>
+
+      <pre>
+        <code class="language-python">
+          import requests
+          import geopandas as gpd
+          import networkx as nx
+          import matplotlib.pyplot as plt
+        </code>
+      </pre>
+
+      <p>Our problem, finding the shortest path between two countries, can be reduced to a graph theory problem, where each country is a node, and other countries they border are an edge. Hence, I decided to use Python’s NetworkX library, which allows me to work with graphs and networks.<br><br>Additionally, I also used GeoPandas, a library that applies the capabilities of the Pandas library to geographic data.<br><br>Finally, Requests is used to fetch our data package, and MatPlotLib is for plotting maps.</p>
+    </section>
+
+    <section>
+      <h1>3. Fetch the Data</h1>
+
+      <pre>
+        <code class="language-python">
+          # Fetch the raw content from the URL
+          response = requests.get('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+          geojson_file = response.text
+          
+          # Read the GeoJSON file into a GeoDataFrame
+          gdf = gpd.read_file(geojson_file)
+        </code>
+      </pre>
+
+      <p>To use the data, we must first load the data into the notebook.</p>
+    </section>
+
+    <section>
+      <h1>4. Calculate the Latitude and Longitude of each country</h1>
+
+      <pre>
+        <code class="language-python">
+          # Calculate the centroid of each country and extract the latitude and longitude
+          gdf['centroid'] = gdf['geometry'].centroid
+          gdf['latitude'] = gdf['centroid'].y
+          gdf['longitude'] = gdf['centroid'].x
+          
+          # Drop the 'centroid' column since you no longer need it
+          gdf = gdf.drop(columns=['centroid'])
+        </code>
+      </pre>
+
+      <p>We are calculating the latitude and longitude of each country, so that we can use the values to visualise the nodes based off their real geographical positions. Latitude and longitude are stored in the <code class="language-python">centroid</code> attribute.</p>
+    </section>
+
+    <section>
+      <h1>5. Create a Country Border Network Graph</h1>
+
+      <pre>
+        <code class="language-python">
+          def create_country_network(gdf, country_column):
+          """
+          Create a network of neighboring countries based on their geometries and attributes.
+          Parameters:
+          gdf (geopandas.GeoDataFrame): A GeoDataFrame containing country geometries and attributes.
+          country_column (str): The name of the column in the GeoDataFrame that contains country names.
+          Returns:
+          networkx.Graph: A NetworkX graph representing countries as nodes and neighboring relationships as edges.
+          The function validates and cleans the input geometries, extracts latitude and longitude,
+          adds countries as nodes to the graph, and adds edges between neighboring countries.
+      
+          """
+          # Initialize a NetworkX graph
+          G = nx.Graph()
+      
+          # Validate and clean geometries
+          for idx, row in gdf.iterrows():
+              country_name = row[country_column]
+              geom = row['geometry']
+      
+              # Validate the geometry
+              if not geom.is_valid:
+                  # Buffer with a very small distance to fix invalid geometries
+                  geom = geom.buffer(0)
+      
+              # Add the cleaned geometry back to the GeoDataFrame
+              gdf.at[idx, 'geometry'] = geom
+      
+              # Extract latitude and longitude from the GeoDataFrame
+              latitude = row['latitude']
+              longitude = row['longitude']
+      
+              # Add the country as a node in the NetworkX graph with latitude and longitude as attributes
+              G.add_node(country_name, latitude=latitude, longitude=longitude)
+      
+          # Add edges between neighboring countries
+          for idx, row in gdf.iterrows():
+              country1 = row[country_column]
+              geom1 = row['geometry']
+      
+              for idx2, row2 in gdf.iterrows():
+                  if idx != idx2:
+                      country2 = row2[country_column]
+                      geom2 = row2['geometry']
+      
+                      # Check if the cleaned geometries intersect
+                      if geom1.intersects(geom2):
+                          G.add_edge(country1, country2)
+      
+          #Editing Edges
+          G.add_edge('Singapore', 'Malaysia')
+          G.add_edge('Denmark', 'Sweden')
+          G.add_edge('United Kingdom', 'France')
+          G.add_edge('Greenland', 'Canada')
+      
+          G.remove_edge('Angola', 'Republic of Congo')
+          G.remove_edge('Azerbaijan', 'Turkey')
+          G.remove_edge('Russia', 'Poland')
+          G.remove_edge('Spain', 'Morocco')
+          G.remove_edge('Palestine', 'Egypt')
+      
+          return G
+      
+      # Create a network of neighboring countries based on the GeoDataFrame using the 'ADMIN' column
+      G = create_country_network(gdf, 'ADMIN')
+        </code>
+      </pre>
+
+      <p>After all that preparation, we can now proceed with the construction of our Country Border Network Graph. <br><br> This function, <code class="language-python">create_country_network()</code>, processes the data within the <code class="language-python">GeoDataFrame</code>, and creates our Country Border Network Graph. It iterates over each row of the <code class="language-python">GeoDataFrame</code>, where each row corresponds to a different country. It then creates a <b>Node</b> for the country while adding latitude and longitude as attributed to the country. <br><br> Here is the output:</p>
+      <img src="Images/Network_of_Country_Borders.png" alt="">
+      <p>As you can see, each <b>Node</b> represents a country, and each <b>Edge</b> indicates the existence of a border between two countries.</p>
+      <pre>
+        <code class="language-python">
+          #Editing Edges
+          G.add_edge('Singapore', 'Malaysia')
+          G.add_edge('Denmark', 'Sweden')
+          G.add_edge('United Kingdom', 'France')
+          G.add_edge('Greenland', 'Canada')
+      
+          G.remove_edge('Angola', 'Republic of Congo')
+          G.remove_edge('Azerbaijan', 'Turkey')
+          G.remove_edge('Russia', 'Poland')
+          G.remove_edge('Spain', 'Morocco')
+          G.remove_edge('Palestine', 'Egypt')
+        </code>
+      </pre>
+      <p>I also edited the edges manually, as <a href="https://travle.earth/">travel.earth</a> has a specific set of rules on how countries border each other. This is because they are using a modified version of the Natural Earth Data Package that I am using.</p>
+      <img src="Images/travle.rules.png" alt="">
+    </section>
+
+    <section>
+      <h1>6. Finding and display the shortest path</h1>
+
+      <pre>
+        <code class="language-python">
+          def find_shortest_path_between_countries(G, source_country, target_country):
+            """
+            Find and print the shortest path between two countries in the network.
+
+            Parameters:
+            G (networkx.Graph): The network of neighboring countries.
+            source_country (str): The name of the source country.
+            target_country (str): The name of the target country.
+            """
+            shortest_path = nx.shortest_path(G, source=source_country, target=target_country)
+            countries_travelled = [target_country]
+            counter = 0
+
+            # Print the minimum number of borders and the country names you have to cross
+            print("\nMinimum number of borders to go from", source_country, "to", target_country, ":", len(shortest_path) - 1)
+            print("Countries to cross:")
+            for i in range(len(shortest_path) - 1):
+                source = shortest_path[i]
+                target = shortest_path[i + 1]
+                counter += 1
+                print(f"{counter}) {source} -> {target}")
+                countries_travelled.append(source)
+
+            # Match the country names to their respective ISO codes
+            countries_travelled_gdf = gdf[gdf['ADMIN'].isin(countries_travelled)]
+            countries_travelled_iso = countries_travelled_gdf.set_index('ADMIN')['ISO_A3'].to_dict()
+
+            # Plot map with countries travelled highlighted
+            gdf['highlight'] = gdf['ISO_A3'].apply(lambda x: x in countries_travelled_iso.values())
+
+            fig, ax = plt.subplots(1, 1, figsize=(15, 10))
+            gdf.boundary.plot(ax=ax, linewidth=1)
+
+            gdf[gdf['highlight']].plot(ax=ax, color='#1de79d', legend=True, label='Highlighted Countries')
+            gdf[~gdf['highlight']].plot(ax=ax, color='lightgrey')
+
+            # Create a subgraph with only the travelled countries
+            subgraph = G.subgraph(countries_travelled)
+
+            # Create a dictionary of node positions using longitude and latitude
+            node_positions = {n: (d['longitude'], d['latitude']) for n, d in subgraph.nodes(data=True)}
+
+            # Draw the network on the map with specified node and edge attributes
+            nx.draw(
+                subgraph,
+                pos=node_positions,
+                with_labels=False,
+                node_size=50,
+                node_color='#e71d67',
+                edge_color='#1d3fe7',
+                ax=ax
+            )
+
+            plt.title('Countries travelled through with Network Graph')
+            plt.axis('off')
+            plt.show()
+
+            # Find and print the shortest path from the starting country to target country in the network
+            start = input("Starting Country: ")
+            end = input("Target Country: ")
+            find_shortest_path_between_countries(G, start, end)
+        </code>
+      </pre>
+
+      <p>Finally, after all that preparation. We can finally find the shortest path from one country to another (minimum borders crossed). <br><br> This is suprisingly simple, as NetworkX has a <code class="language-python">shortest_path()</code> function, which handles all the calculations. The rest of the code is to format the graph and output. <br><br> Here is the result:</p>
+      <img src="Images/shortest_path_finder_result.gif" alt="" class="map-display">
+      <p>You can try it out for yourself <a href="https://colab.research.google.com/drive/1ZR49Ne2K173WT_UjbxOcLCk1Stxu3Iv3?usp=sharing">here</a>.</p>
+    </section>
+
+    <section>
+      <h1>Conclusion</h1>
+      <p>In this project, we have used GeoPandas, a library for working with geospatial data, and NetworkX, a library for working with network graphs, to generate a represenation of the world's borders. From there, a shortest path algorithm was utilised to answer our original question: What are the minimum number of borders to cross to get from X to Y?<br><br>With this python script, I can finally solve every <a href="https://travle.earth/">travel.earth</a> daily challenge.</p>
+    </section>
+
+  </main>
+
+  <footer>
+
+    <section class="section-wrapper">
+      <div class="section-name">
+        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
+          Lee Ying Ray
+      </div>
+
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="">About me</a>
+        <a href="">Resume</a>
+      </div>
+    </section>
+
+    <section class="section-wrapper">
+      <div class="section-name">
+        Contact Me
+      </div>
+
+      <div class="links">
+        <a href="">Email</a>
+        <a href="">LinkedIn</a>
+        <a href="">GitHub</a>
+      </div>
+    </section>
+
+
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>
