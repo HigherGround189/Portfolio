@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css" rel="stylesheet" />
-  <title>Projects</title>
+  <title>Data Engineering Project</title>
   <style>
      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
@@ -45,8 +45,9 @@
 
     }
 
-    nav a{
+    nav a, footer a{
       text-decoration: none;
+      color: rgb(85, 26, 139);
     }
 
     .left-text{
@@ -177,6 +178,10 @@
       font-size: 3vw;
     }
 
+    .title-header + img{
+      margin-bottom: 2rem;
+    }
+
     /* main > *{
       border: 3px orange solid;
     }
@@ -199,10 +204,6 @@
       filter: contrast(90%);
     }
 
-    hr{
-      width: 100%;
-      height: 1px black solid;
-    }
 
     main > section{
       width: 80%;
@@ -212,6 +213,14 @@
       margin-top: 1rem;
       font-size: 20px;
       font-family: var(--font-normal);
+    }
+
+    section > h1 + img{
+      margin-top: 1rem;
+    }
+
+    section img{
+      margin-top: 0.5rem;
     }
 
     pre{
@@ -252,13 +261,14 @@
     }
 
 
+
   </style>
 </head>
 <body>
   <nav>
     <div class="left-text">
       <a href="index.html">
-        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
+        <img src="Images/address-icon.svg" alt="" class="logo-img">
         Ying Ray
       </a>
     </div>
@@ -266,255 +276,67 @@
     <div class="right-text">
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
-      <a href="">About me</a>
+      <a href="about_me.html">About me</a>
       <a href="">Resume</a>
     </div>
   </nav>
 
   <main>
-    <h1 class="title-header">Shortest Path between two  Countries</h1>
-    <img src="Images/shortest_parth_between_countries.png" alt="" class="map-display">
+    <h1 class="title-header">Data Engineering Project with Arduino</h1>
+    <img src="Images/Data_Engineering_Project_Arduino.jpg" alt="">
 
-    <hr>
     <section>
-      <h1>Project Background</h1>
-      <p>What are the <b>minimum</b> number of borders to cross to get from Italy to Indonesia?  This question plagued me one day, after I visited <a href="https://travle.earth/">travel.earth</a>: A game where you guess the shortest path between two countries, crossing the <b>least</b> borders in the process. <br><br>Here is an example:</p>
-      <img src="shortest_path_example.png" alt="" class="map-display">
-      <p>Minimum number of borders to go from China to Singapore : 4 Countries to cross:
-        <br>1) China -> Laos
-        <br>2) Laos -> Thailand
-        <br>3) Thailand -> Malaysia
-        <br>4) Malaysia -> Singapore</p>
-      <p>While playing, I wondered if it were possible to make a python script that could play this game flawlessly; This <a href="https://colab.research.google.com/drive/1ZR49Ne2K173WT_UjbxOcLCk1Stxu3Iv3?usp=sharing">project</a> is the result.</p>
+      <h1>Project Overview</h1>
+      <p>Maintaining the optimal enviornmental conditions on a factory shop floor is critical for the comfort and productivity of workers, along with their safety. So how can we improve these enviornmental conditions? <br><br>This group project aims to improve worker safety and comfort on a facory shop floor by monitoring and analysing environmental conditions. Our goal is to identify areas where temperature, humidity, and air quality was unsuitable for workers, and to provide sustainable and energy-efficient recommendations for improvement.</p>
     </section>
 
     <section>
-      <h1>1. Data</h1>
-      <p>I used Natural Earth’s <a href="https://github.com/datasets/geo-countries">data package</a>, which contains GeoJSON polygons, to provide shapes for all the world's countries. I was specifically looking for the political borders of each country. </p>
+      <h1>Data Collection</h1>
+      <p>To facilitate Data Collection, we hooked an Arduino Uno up with a temperature and humidity sensor, and an air quality sensor. We then placed the Arduino at the factory shop floor, and connected it to a database via an MQTT broker. Our group's sensor was placed at the room's south-east.</p>
+      <img src="Images/sensorLocations_S130.jpeg" alt="">
+      <p>Additionally, extra data was obtained from the "device01" sensor, which was a sensor placed at the room's shutter door by our lecturer. Furthermore, we also exchanged data with another group, whose sensor was located at the north-west of the room. <br><br>With 3 datasets, we were now ready to move on to Data Preparation.</p>
     </section>
 
     <section>
-      <h1>2. Libraries</h1>
-
-      <pre>
-        <code class="language-python">
-          import requests
-          import geopandas as gpd
-          import networkx as nx
-          import matplotlib.pyplot as plt
-        </code>
-      </pre>
-
-      <p>Our problem, finding the shortest path between two countries, can be reduced to a graph theory problem, where each country is a node, and other countries they border are an edge. Hence, I decided to use Python’s NetworkX library, which allows me to work with graphs and networks.<br><br>Additionally, I also used GeoPandas, a library that applies the capabilities of the Pandas library to geographic data.<br><br>Finally, Requests is used to fetch our data package, and MatPlotLib is for plotting maps.</p>
+      <h1>Data Preparation</h1>
+      <p>Aside from performing the standard Data Cleaning steos, such as by removing null values, we had to confront a major issue: </p>
+      <img src="Images/data_engineering_sensor_outage.png" alt="">
+      <p>There was a outage in the database that stored our readings, which was not restored for 2 days. This significantly complicated things, as it caused the graphs we plotted to be less readable and intuitive. Hence, we only decided to use data collected from after the outage was resolved (Right of the red line).</p>
     </section>
 
     <section>
-      <h1>3. Fetch the Data</h1>
-
-      <pre>
-        <code class="language-python">
-          # Fetch the raw content from the URL
-          response = requests.get('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
-          geojson_file = response.text
-          
-          # Read the GeoJSON file into a GeoDataFrame
-          gdf = gpd.read_file(geojson_file)
-        </code>
-      </pre>
-
-      <p>To use the data, we must first load the data into the notebook.</p>
+      <h1>Data Exploration & Analysis</h1>
+      <p>From here, my group created more graphs to better visualise and explore the latent trends and patterns of the factory shop floor throughout our selected timeframe. <br><br>Here are some of the graphs:</p>
+      <img src="Images/data_engineering_temperature_graph.png" alt="">
+      <img src="Images/data_engineering_humidity_graph.png" alt="">
+      <img src="Images/data_engineering_air_quality_graph.png" alt="">
+      <p>So what insights do we gain from these graphs?</p>
     </section>
 
     <section>
-      <h1>4. Calculate the Latitude and Longitude of each country</h1>
-
-      <pre>
-        <code class="language-python">
-          # Calculate the centroid of each country and extract the latitude and longitude
-          gdf['centroid'] = gdf['geometry'].centroid
-          gdf['latitude'] = gdf['centroid'].y
-          gdf['longitude'] = gdf['centroid'].x
-          
-          # Drop the 'centroid' column since you no longer need it
-          gdf = gdf.drop(columns=['centroid'])
-        </code>
-      </pre>
-
-      <p>We are calculating the latitude and longitude of each country, so that we can use the values to visualise the nodes based off their real geographical positions. Latitude and longitude are stored in the <code class="language-python">centroid</code> attribute.</p>
+      <h1>Key Insights</h1>
+      <p>Looking at the temperature graph, it seems that the temperature is barely ever within the <a href="https://www.enviresearch.co.th/wp-content/uploads/2020/01/Indoor-Air-2016.pdf">acceptible bounds</a>  of 23&deg;C-25&deg;C, which keeps a worker comfortable and productive. This has negative implications for a worker on this factory shop floor, as they are simply less productive due to the lack of thermal comfort; In a worst case scenario, they might even suffer from heat stroke! <br><br>The humidity chart does not paint a brighter picture, as it is only within the acceptible range half the time. Furthremore, high humidity has a pronounced effect on the environemnt's perceived temperature, which further exacerbates the lack of thermal comfort workers were originally facing. <br><br>Ironically, while the air quality graph might seem the most alarming at first glance, its massive spike is nothing to worry about: This is beacuse the acceptible range for air quality is anything below 300 units. As seen on the graph, even the spike only surges up to 70 units. <br><br>With our newfound insights, we can now create recommendations to combat these issues.</p>
     </section>
 
     <section>
-      <h1>5. Create a Country Border Network Graph</h1>
-
-      <pre>
-        <code class="language-python">
-          def create_country_network(gdf, country_column):
-          """
-          Create a network of neighboring countries based on their geometries and attributes.
-          Parameters:
-          gdf (geopandas.GeoDataFrame): A GeoDataFrame containing country geometries and attributes.
-          country_column (str): The name of the column in the GeoDataFrame that contains country names.
-          Returns:
-          networkx.Graph: A NetworkX graph representing countries as nodes and neighboring relationships as edges.
-          The function validates and cleans the input geometries, extracts latitude and longitude,
-          adds countries as nodes to the graph, and adds edges between neighboring countries.
-      
-          """
-          # Initialize a NetworkX graph
-          G = nx.Graph()
-      
-          # Validate and clean geometries
-          for idx, row in gdf.iterrows():
-              country_name = row[country_column]
-              geom = row['geometry']
-      
-              # Validate the geometry
-              if not geom.is_valid:
-                  # Buffer with a very small distance to fix invalid geometries
-                  geom = geom.buffer(0)
-      
-              # Add the cleaned geometry back to the GeoDataFrame
-              gdf.at[idx, 'geometry'] = geom
-      
-              # Extract latitude and longitude from the GeoDataFrame
-              latitude = row['latitude']
-              longitude = row['longitude']
-      
-              # Add the country as a node in the NetworkX graph with latitude and longitude as attributes
-              G.add_node(country_name, latitude=latitude, longitude=longitude)
-      
-          # Add edges between neighboring countries
-          for idx, row in gdf.iterrows():
-              country1 = row[country_column]
-              geom1 = row['geometry']
-      
-              for idx2, row2 in gdf.iterrows():
-                  if idx != idx2:
-                      country2 = row2[country_column]
-                      geom2 = row2['geometry']
-      
-                      # Check if the cleaned geometries intersect
-                      if geom1.intersects(geom2):
-                          G.add_edge(country1, country2)
-      
-          #Editing Edges
-          G.add_edge('Singapore', 'Malaysia')
-          G.add_edge('Denmark', 'Sweden')
-          G.add_edge('United Kingdom', 'France')
-          G.add_edge('Greenland', 'Canada')
-      
-          G.remove_edge('Angola', 'Republic of Congo')
-          G.remove_edge('Azerbaijan', 'Turkey')
-          G.remove_edge('Russia', 'Poland')
-          G.remove_edge('Spain', 'Morocco')
-          G.remove_edge('Palestine', 'Egypt')
-      
-          return G
-      
-      # Create a network of neighboring countries based on the GeoDataFrame using the 'ADMIN' column
-      G = create_country_network(gdf, 'ADMIN')
-        </code>
-      </pre>
-
-      <p>After all that preparation, we can now proceed with the construction of our Country Border Network Graph. <br><br> This function, <code class="language-python">create_country_network()</code>, processes the data within the <code class="language-python">GeoDataFrame</code>, and creates our Country Border Network Graph. It iterates over each row of the <code class="language-python">GeoDataFrame</code>, where each row corresponds to a different country. It then creates a <b>Node</b> for the country while adding latitude and longitude as attributed to the country. <br><br> Here is the output:</p>
-      <img src="Images/Network_of_Country_Borders.png" alt="">
-      <p>As you can see, each <b>Node</b> represents a country, and each <b>Edge</b> indicates the existence of a border between two countries.</p>
-      <pre>
-        <code class="language-python">
-          #Editing Edges
-          G.add_edge('Singapore', 'Malaysia')
-          G.add_edge('Denmark', 'Sweden')
-          G.add_edge('United Kingdom', 'France')
-          G.add_edge('Greenland', 'Canada')
-      
-          G.remove_edge('Angola', 'Republic of Congo')
-          G.remove_edge('Azerbaijan', 'Turkey')
-          G.remove_edge('Russia', 'Poland')
-          G.remove_edge('Spain', 'Morocco')
-          G.remove_edge('Palestine', 'Egypt')
-        </code>
-      </pre>
-      <p>I also edited the edges manually, as <a href="https://travle.earth/">travel.earth</a> has a specific set of rules on how countries border each other. This is because they are using a modified version of the Natural Earth Data Package that I am using.</p>
-      <img src="Images/travle.rules.png" alt="">
+      <h1>Recommendations (Temperature)</h1>
+      <img src="Images/data_engineering_project_recommendations_tree.jpeg" alt="">
+      <p>Our first recommendation to tackle temperature is to plant more trees on the exterior of the room. <br><br>As seen in the diagram, trees will provide shad, which helps to reduce the amount of sunlight hitting the room, thus reducing how much it heats up. <br><br>Additionally, trees also release water vapour into their surroundings (transpiration). This cools the surrounding air, which further reduces local temperature.</p>
+      <img src="Images/galvanised-steel-shutters.jpg" alt="">
+      <p>Our second recommendation is to apply thermal insulation coating on the factory shop floor's metal shutters. <br><br>Thermal insulation coating reflects the sun's visible light and energy, and therefore minimises the shutter's thermal conductivity. As seen in the temperature graph, the temperature around the shutter door is abnormally high; Applying thermal insulation coating will help alleviate the high temperature in that area.</p>
+      <img src="Images/one-way-pressure-valve.jpg" alt="">
+      <p>Our final recommendation is to install a one-way pressure relief vent in the room. <br><br>Since air flows from high to low pressure, if the temperature of the room is higher than the outside, hot air will flow from the room to outside. However, since the opposite is true most of the time, we can utilise one-way vents, where air can only flow out of the room.</p>
     </section>
 
     <section>
-      <h1>6. Finding and display the shortest path</h1>
-
-      <pre>
-        <code class="language-python">
-          def find_shortest_path_between_countries(G, source_country, target_country):
-            """
-            Find and print the shortest path between two countries in the network.
-
-            Parameters:
-            G (networkx.Graph): The network of neighboring countries.
-            source_country (str): The name of the source country.
-            target_country (str): The name of the target country.
-            """
-            shortest_path = nx.shortest_path(G, source=source_country, target=target_country)
-            countries_travelled = [target_country]
-            counter = 0
-
-            # Print the minimum number of borders and the country names you have to cross
-            print("\nMinimum number of borders to go from", source_country, "to", target_country, ":", len(shortest_path) - 1)
-            print("Countries to cross:")
-            for i in range(len(shortest_path) - 1):
-                source = shortest_path[i]
-                target = shortest_path[i + 1]
-                counter += 1
-                print(f"{counter}) {source} -> {target}")
-                countries_travelled.append(source)
-
-            # Match the country names to their respective ISO codes
-            countries_travelled_gdf = gdf[gdf['ADMIN'].isin(countries_travelled)]
-            countries_travelled_iso = countries_travelled_gdf.set_index('ADMIN')['ISO_A3'].to_dict()
-
-            # Plot map with countries travelled highlighted
-            gdf['highlight'] = gdf['ISO_A3'].apply(lambda x: x in countries_travelled_iso.values())
-
-            fig, ax = plt.subplots(1, 1, figsize=(15, 10))
-            gdf.boundary.plot(ax=ax, linewidth=1)
-
-            gdf[gdf['highlight']].plot(ax=ax, color='#1de79d', legend=True, label='Highlighted Countries')
-            gdf[~gdf['highlight']].plot(ax=ax, color='lightgrey')
-
-            # Create a subgraph with only the travelled countries
-            subgraph = G.subgraph(countries_travelled)
-
-            # Create a dictionary of node positions using longitude and latitude
-            node_positions = {n: (d['longitude'], d['latitude']) for n, d in subgraph.nodes(data=True)}
-
-            # Draw the network on the map with specified node and edge attributes
-            nx.draw(
-                subgraph,
-                pos=node_positions,
-                with_labels=False,
-                node_size=50,
-                node_color='#e71d67',
-                edge_color='#1d3fe7',
-                ax=ax
-            )
-
-            plt.title('Countries travelled through with Network Graph')
-            plt.axis('off')
-            plt.show()
-
-            # Find and print the shortest path from the starting country to target country in the network
-            start = input("Starting Country: ")
-            end = input("Target Country: ")
-            find_shortest_path_between_countries(G, start, end)
-        </code>
-      </pre>
-
-      <p>Finally, after all that preparation. We can finally find the shortest path from one country to another (minimum borders crossed). <br><br> This is suprisingly simple, as NetworkX has a <code class="language-python">shortest_path()</code> function, which handles all the calculations. The rest of the code is to format the graph and output. <br><br> Here is the result:</p>
-      <img src="Images/shortest_path_finder_result.gif" alt="" class="map-display">
-      <p>You can try it out for yourself <a href="https://colab.research.google.com/drive/1ZR49Ne2K173WT_UjbxOcLCk1Stxu3Iv3?usp=sharing">here</a>.</p>
+      <h1>Recommendations (Humidity)</h1>
+      <img src="Images/industrial_dehumidifier.jpg" alt="">
+      <p>Our recommendation to control humidity is to install an industrial-grade dehumidifier in the room. <br><br>To save on electricity, the dehumidifier should also be conncected to a humidity sensor, and would only turn on when the local humidity exceeds acceptable levels.</p>
     </section>
 
     <section>
       <h1>Conclusion</h1>
-      <p>In this project, we have used GeoPandas, a library for working with geospatial data, and NetworkX, a library for working with network graphs, to generate a represenation of the world's borders. From there, a shortest path algorithm was utilised to answer our original question: What are the minimum number of borders to cross to get from X to Y?<br><br>With this python script, I can finally solve every <a href="https://travle.earth/">travel.earth</a> daily challenge.</p>
+      <p>In summary, this project has successfully monitored and analysed the enviornmental conditions of the factory shop floor. Our findings have also generated new insights, highlighting problems that workers face. We have then created recommedations, as potential solutions for these issues. <br><br>If you would like to read up on our project in greater detail, you can do so <a href="data_engineering_project_with_arduino.pdf">here</a>.</p>
     </section>
 
   </main>
@@ -523,14 +345,14 @@
 
     <section class="section-wrapper">
       <div class="section-name">
-        <img src="../../Module/Project/Images/address-icon.svg" alt="" class="logo-img">
-          Lee Ying Ray
+        <img src="Images/address-icon.svg" alt="" class="logo-img">
+          Ying Ray
       </div>
 
       <div class="links">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
-        <a href="">About me</a>
+        <a href="about_me.html">About me</a>
         <a href="">Resume</a>
       </div>
     </section>
@@ -541,16 +363,15 @@
       </div>
 
       <div class="links">
-        <a href="">Email</a>
-        <a href="">LinkedIn</a>
-        <a href="">GitHub</a>
+        <a href="mailto: yingray88@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/y-r-lee-627b2b322/">LinkedIn</a>
+        <a href="https://github.com/HigherGround189">GitHub</a>
       </div>
     </section>
 
 
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 </body>
